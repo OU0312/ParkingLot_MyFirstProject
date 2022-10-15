@@ -1,0 +1,18 @@
+8 > S0
+9 > S1
+10 > S2
+11 > S3
+12 > Pay
+
+2 > SDA
+3 > SCL
+5 > Servo 1
+6 > Servo 2
+
+A3 > In G
+A4 > In Y
+A5 > In R
+
+A0 > Sig
+
+Gnd 하나 따로 빼서 멀티플렉서 보드에 연결
