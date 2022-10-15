@@ -27,7 +27,7 @@ try:
         timeout=10
     )
 except:
-    pass
+    print("아두이노 연결확인해봐 임마")
 
 
 img_counter1 = 0
@@ -679,22 +679,6 @@ if __name__  == '__main__' :
                     font=('맑은 고딕',12,'bold'),
                     rowheight=25
     )
-    
-    # dtime = datetime.now()
-    # data = {
-    #     'g' : ["123가4567",datetime.strftime(dtime, "%Y-%m-%d / %H:%M:%S"),"1000"] ,
-    #     's' : ["777사7777",dtime,"5000원"]
-    # }
-    # treeview.insert('', 'end', values=(data['g']))
-    # treeview.insert('', 'end', values=(data['g']))
-    # treeview.insert('', 'end', values=(data['g']))
-    # treeview.insert('', 'end', values=(data['g']))
-    # treeview.insert('', 'end', values=(data['g']))
-    # treeview.insert('', 'end', values=(data['g']))
-    # treeview.insert('', 'end', values=(data['g']))
-    # treeview.insert('', 'end', values=(data['g']))
-    # treeview.insert('', 'end', values=(data['g']))
-    # treeview.insert('', 'end', values=(data['g']))
     
     btnout = tk.Button(frame_info, text="종료", command=root.quit, width = 5 , height = 2)
     btnout.pack(pady=25)
