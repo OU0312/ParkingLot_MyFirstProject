@@ -2,6 +2,7 @@ from PIL import Image
 from PIL import ImageTk
 import tkinter as tk
 import tkinter.ttk as ttk
+import tkinter.messagebox as msgbox
 import threading
 import datetime
 import cv2
@@ -15,6 +16,9 @@ import time
 from datetime import datetime
 
 db = {}
+error_arduino=False
+error_cam=False
+
 try:
     py_serial = serial.Serial(
         
@@ -27,14 +31,14 @@ try:
         timeout=10
     )
 except:
-    print("아두이노 연결확인해봐 임마")
+    error_arduino = True
 
 
 img_counter1 = 0
 img_counter2 = 0
 
 def camThread():
-    global color,color2
+    global color,color2,error_cam
     color = []
     cam1 = cv2.VideoCapture(1)
     cam2 = cv2.VideoCapture(0)
@@ -42,7 +46,7 @@ def camThread():
     panel2 = None
     
     if cam1 == None or cam2 == None :
-        print("no cam")
+        error_cam=True
     
     while True:
         ret,color = cam1.read()
@@ -633,6 +637,11 @@ if __name__  == '__main__' :
     root.geometry("1920x1080")
     root.attributes('-fullscreen',True)
     root.bind("<Key>",keyclick)
+    
+    if error_arduino == True :
+        msgbox.showerror("에러다 이자식아","아두이노 연결 이상하잖아")
+    if error_cam == True :
+        msgbox.showerror("에러다 이자식아","캠 연결 이상하잖아")
     
     frame_cam = tk.LabelFrame(root,text="cam",relief="solid", bd=1,padx=250)
     frame_cam.pack(side="top",fill="both" , expand=True,padx = 5)

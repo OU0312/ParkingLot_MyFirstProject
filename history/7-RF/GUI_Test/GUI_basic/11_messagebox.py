@@ -33,7 +33,7 @@ def yesnocan():
         print("cancel")
 
 
-
+msgbox.showerror("error","idiot")
 Button(root, command=info,text="alarm").pack()
 Button(root, command=warn,text="warn").pack()
 Button(root, command=err,text="error").pack()
