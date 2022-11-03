@@ -10,7 +10,4 @@
 	<img src="https://img.shields.io/badge/Visual Studio Code-007ACC?style=flat&logo=Visual Studio Code&logoColor=white" />
 	<img src="https://img.shields.io/badge/Arduino-00979D?style=flat&logo=Arduino&logoColor=white" />
 	<h1></h1>
-	<h4>⚠ 주의할점</h4>
-	<p>• 파이썬이 실행중이면 임베디드 업로드가 안된다.</p>
-	<span>• 파이썬이 실행중이면 임베디드 업로드가 안된다.</span>
 </div>
