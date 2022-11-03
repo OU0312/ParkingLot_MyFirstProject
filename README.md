@@ -8,6 +8,6 @@
 	<br>
 	<h4>개발 환경</h4>
 	<img src="https://img.shields.io/badge/Visual Studio Code-007ACC?style=flat&logo=Visual Studio Code&logoColor=white" />
-	<span>강의실,카페,집</span>
+	<img src="https://img.shields.io/badge/Arduino-00979D?style=flat&logo=Arduino&logoColor=white" />
 	<br>
 </div>
