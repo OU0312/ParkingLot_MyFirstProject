@@ -1,6 +1,6 @@
 
 <div align="center">
-	<h1>ParkingLot_MyFirstProject
+	<h1>ParkingLot_MyFirstProject<br>
 	OpenCV를 이용한 차량번호인식 무인 주차장 운영 시스템</h1>
 	<span>2022 부천대학교 캡스톤 디자인 우수상</span>
 	<h4>Stack</h4>
