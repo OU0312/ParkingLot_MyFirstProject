@@ -1,6 +1,7 @@
 # OpenCV를 이용한 차량번호인식 무인 주차장 운영 시스템 🚗
 
-img
+![readme1](https://user-images.githubusercontent.com/113419018/216010294-80ed1df8-698b-4cf6-8f3f-e5d2322d1dbd.gif)
+![readme2](https://user-images.githubusercontent.com/113419018/216010528-55cfb248-9942-401d-bc99-8e810d7c7fe0.gif)
 
 #### 2022 부천대학교 캡스톤 디자인 우수상
 
