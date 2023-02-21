@@ -36,6 +36,139 @@
 
 <hr>
 
+### ⚙️ Update ⚙️
+
+#### 번호판 인식 알고리즘 수정(23.02.21)
+
+첫 프로젝트였던 만큼 알고리즘 짜는 실력이 많이 부족했기에 다시 짰습니다.
+
+수정 전:
+
+```python
+hanguel_list_all = ["가","기","나","니","다","디","라","리","마","미","먀","므","바","비","뱌","브","사","시","샤","스","아","이","야","으","어","여","자","지","쟈","즈","하","히","햐","흐"]
+hanguel_list_ga = ["가","기","갸","그"]
+hanguel_list_na = ["나","니","냐","느"]
+hanguel_list_da = ["다","디","댜","드"]
+hanguel_list_ra = ["라","리","랴","르"]
+hanguel_list_ma = ["마","미","먀"]
+... #반복...
+
+if hanguel not in hanguel_list_all: # 한글이 아닌 경우
+  py_serial.write(errorlog.encode('utf-8'))
+  time.sleep(0.1)
+  errorstate=True
+
+if hanguel in hanguel_list_ga and errorstate!=True:
+    hanguel_change = "g"
+
+elif hanguel in hanguel_list_na and errorstate!=True:
+    hanguel_change = "n"
+
+elif hanguel in hanguel_list_da and errorstate!=True:
+    hanguel_change = "d"
+... #반복...
+```
+
+후:
+
+```python
+number_list = ['1','2','3','4','5','6','7','8','9','0']
+hangeul_list = {
+    #key : [values,serial]
+    "가" : ["가","기","갸","그",'g'],
+    "나" : ["나","니","냐","느",'n'],
+    "다" : ["다","디","댜","드",'d'],
+    "라" : ["라","리","랴","르",'r'],
+    "마" : ["마","미","먀",'m'],
+    "바" : ["바","비","뱌","브",'b'],
+    "사" : ["사","시","샤","스",'s'],
+    "아" : ["아","이","야","으",'a'],
+    "어" : ["어","여",'o'],
+    "자" : ["자","지","쟈","즈",'j'],
+    "하" : ["하","히","햐","흐",'h'],
+}
+
+chars="123가4567"
+
+errorlog='e' # 에러 시리얼
+error_state=False
+license_plate = list(chars) #한글자씩 배열
+count = len(license_plate) #번호판 길이
+
+#번호판이 너무 길다면
+if count != 8:
+    if license_plate[0:3] not in number_list:
+            for i in license_plate[0:3]:
+                index = license_plate.index(i)
+                if i not in number_list:
+                    print("found you",i)
+                    license_plate.pop(license_plate.index(i))
+    if license_plate[-4:] not in number_list:
+        for i in license_plate[-4:]:
+            index = license_plate.index(i)
+            if i not in number_list:
+                print("found you",i)
+                license_plate.pop(license_plate.index(i))
+
+hangeul = license_plate.pop(3) #list에서 한글 빼기
+hangeul_key = "" # 한글 수정
+hangeul_data_to_arduino = '' #아두이노 시리얼로 보낼 데이터
+
+for key,values in hangeul_list.items():
+    if hangeul in values:
+        error_state=False
+        hangeul_key = key
+        hangeul_data_to_arduino = values[-1]
+        break
+    else:
+        error_state=True
+
+if error_state == True:
+    print("serial :",errorlog)
+else:
+    print("key :",hangeul_key,"\nserial :",hangeul_data_to_arduino)
+    print(license_plate[0:3],hangeul_key,license_plate[-4:])
+```
+
+실행결과 :
+
+```py
+key : 가
+serial : g
+['1', '2', '3'] 가 ['4', '5', '6', '7']
+```
+
+오류 검출시 :
+
+```py
+#chars="123갸4567"
+
+key : 가
+serial : g
+['1', '2', '3'] 가 ['4', '5', '6', '7']
+```
+
+```py
+#chars="걃123가4567"
+
+found you 걃
+key : 가
+serial : g
+['1', '2', '3'] 가 ['4', '5', '6', '7']
+```
+
+```py
+#chars="궯123갸4567걃"
+
+found you 궯
+found you 걃
+key : 가
+serial : g
+['1', '2', '3'] 가 ['4', '5', '6', '7']
+```
+
+<hr>
+
 ### 만약 지금 다시 만든다면??
 
 개발 날짜 : 2022 여름~가을
