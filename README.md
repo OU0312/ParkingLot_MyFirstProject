@@ -99,13 +99,11 @@ count = len(license_plate) #번호판 길이
 if count != 8:
     if license_plate[0:3] not in number_list:
             for i in license_plate[0:3]:
-                index = license_plate.index(i)
                 if i not in number_list:
                     print("found you",i)
                     license_plate.pop(license_plate.index(i))
     if license_plate[-4:] not in number_list:
         for i in license_plate[-4:]:
-            index = license_plate.index(i)
             if i not in number_list:
                 print("found you",i)
                 license_plate.pop(license_plate.index(i))
